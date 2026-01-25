@@ -1,6 +1,7 @@
 import "@/assets/styles/global.css"
 import { Poppins } from "next/font/google"
 import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
 export const metadata = {
   title: 'Property managment app',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body className={poppins.className}>
         <Navbar/>
         <main>{children}</main>
+        <Footer/>
       </body>
     </html>
   )

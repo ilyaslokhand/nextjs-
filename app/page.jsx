@@ -1,7 +1,11 @@
+import Hero from "@/components/hero"
+import InfoBoxes from "@/components/infoBoxes"
+
 const Homepage = () => {
   return (
-    <div className="bg-red-600">
-      hello
+    <div>
+      <Hero/>
+      <InfoBoxes/>
     </div>
   )
 }
