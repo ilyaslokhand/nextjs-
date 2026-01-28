@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const ConnectDB = async () => {
+  console.log(ConnectDB)
   mongoose.set("strictQuery", true);
 
   // already connected
@@ -11,6 +12,7 @@ const ConnectDB = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI);
+    console.log(process.env.MONGODB_URI);
     console.log("MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection error:", error);

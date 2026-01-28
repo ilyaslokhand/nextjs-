@@ -2,6 +2,7 @@ import "@/assets/styles/global.css"
 import { Poppins } from "next/font/google"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import SessionProviderComponent from "@/components/SessionProvider"
 
 export const metadata = {
   title: 'Property managment app',
@@ -19,6 +20,7 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   return (
+    <SessionProviderComponent>
     <html lang="en">
       <body className={poppins.className}>
         <Navbar/>
@@ -26,5 +28,6 @@ export default function RootLayout({ children }) {
         <Footer/>
       </body>
     </html>
+    </SessionProviderComponent>
   )
 }
