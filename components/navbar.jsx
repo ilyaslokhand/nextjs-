@@ -6,10 +6,13 @@ import profileDefault from "@/assets/images/profile.png";
 import { FaGoogle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useSession, getProviders, signIn } from "next-auth/react";
+import { useSession, getProviders, signIn,signOut } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
+
+  const profileImage = session?.user?.image || profileDefault;
+  
   const [ismobilemenuopen, setismobilemenuopen] = useState(false);
   const [isprofilemenuopen, setisprofilemenuopen] = useState(false);
   const [providers, setproviders] = useState(null);
@@ -22,6 +25,7 @@ const Navbar = () => {
     };
     setUpProviders();
   }, []);
+
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -156,7 +160,9 @@ const Navbar = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       className="h-8 w-8 rounded-full"
-                      src={profileDefault}
+                      src={profileImage}
+                      height={40}
+                      width={40}
                       alt=""
                     />
                   </button>
@@ -191,6 +197,10 @@ const Navbar = () => {
                       Saved Properties
                     </Link>
                     <button
+                    onClick={()=> {
+                      setisprofilemenuopen(false);
+                      signOut();
+                    }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
