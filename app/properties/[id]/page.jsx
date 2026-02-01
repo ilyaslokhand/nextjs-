@@ -32,7 +32,7 @@ const PropertyPage = async ({ params }) => {
           </div>
         </div>
       </section>
-       <PropertyImages images={propertyDetails.images}/>
+      <PropertyImages images={propertyDetails.images} />
     </>
   );
 };
