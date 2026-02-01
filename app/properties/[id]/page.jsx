@@ -4,6 +4,7 @@ import PropertyHeaderImage from "@/components/propertyheaderimage";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import PropertyDetails from "@/components/propertydetails";
+import PropertyImages from "@/components/PropertyImages";
 
 const PropertyPage = async ({ params }) => {
   const { id } = await params;
@@ -25,12 +26,13 @@ const PropertyPage = async ({ params }) => {
         </div>
       </section>
       <section className="bg-blue-50">
-        <div className="container m-auto py-10 px-6">
+        <div className="container m-auto py-10 ">
           <div className="grid-base grid-70-30 gap-6">
             <PropertyDetails property={propertyDetails} />
           </div>
         </div>
       </section>
+       <PropertyImages images={propertyDetails.images}/>
     </>
   );
 };
