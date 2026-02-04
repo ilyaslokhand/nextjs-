@@ -2,8 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { deleteProperty } from "@/app/actions/deleteproperty";
+import { useState } from "react";
 
 const UserProfileProperty = ({ userProperties }) => {
+const [properties, setProperties] = useState(userProperties);
+
+const handleDelete = async(propertyId)=>{
+  const confirmdelete = window.confirm("Are you sure you want to delete this property?");
+  if(!confirmdelete) return;
+  await deleteProperty(propertyId);
+  const updatedProperties = properties.filter(p=>p._id !==propertyId);
+  setProperties(updatedProperties);
+}
+
   return userProperties.map((property, index) => (
     <div className="mb-10" key={index}>
       <Link href={`/properties/${property._id}`}>
@@ -32,6 +44,7 @@ const UserProfileProperty = ({ userProperties }) => {
         <button
           className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
           type="button"
+          onClick={()=>handleDelete(property._id)}
         >
           Delete
         </button>
