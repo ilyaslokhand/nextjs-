@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import SessionProviderComponent from "@/components/SessionProvider"
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata = {
   title: 'Property managment app',
@@ -26,6 +28,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
         <main>{children}</main>
         <Footer/>
+        <ToastContainer/>
       </body>
     </html>
     </SessionProviderComponent>

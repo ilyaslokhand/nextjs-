@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { deleteProperty } from "@/app/actions/deleteproperty";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const UserProfileProperty = ({ userProperties }) => {
 const [properties, setProperties] = useState(userProperties);
@@ -14,6 +15,7 @@ const handleDelete = async(propertyId)=>{
   await deleteProperty(propertyId);
   const updatedProperties = properties.filter(p=>p._id !==propertyId);
   setProperties(updatedProperties);
+  toast.success('Property deleted successfully')
 }
 
   return userProperties.map((property, index) => (
@@ -22,7 +24,7 @@ const handleDelete = async(propertyId)=>{
         <Image
           className="h-32 w-full rounded-md object-cover"
           src={property.images[0]}
-          alt={property.title}
+          alt={property.name}
           width={1000}
           height={200}
         />

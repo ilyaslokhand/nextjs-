@@ -40,7 +40,7 @@ async function addProperty(formdata) {
       nightly: formdata.get("rates.nightly"),
     },
 
-    sellerinfo: {
+    seller_info: {
       name: formdata.get("seller_info.name"),
       email: formdata.get("seller_info.email"),
       phone: formdata.get("seller_info.phone"),

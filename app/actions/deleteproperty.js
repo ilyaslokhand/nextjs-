@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 export async function deleteProperty(propertyId){
     await ConnectDB();
-    const sessionUser = GetSessionUser();
+    const sessionUser = await GetSessionUser();
 
     if(!sessionUser || !sessionUser.userId){
         throw new Error( 'user id is required')
@@ -45,9 +45,5 @@ export async function deleteProperty(propertyId){
     await property.deleteOne();
 
     revalidatePath('/', 'layout')
-
-   
-
-
 
 }
