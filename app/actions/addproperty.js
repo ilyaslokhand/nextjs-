@@ -47,26 +47,25 @@ async function addProperty(formdata) {
     },
   };
 
- const imageUrls = await Promise.all(
-  images.map(async (imageFile) => {
-    // Convert image to buffer
-    const buffer = Buffer.from(await imageFile.arrayBuffer());
+  const imageUrls = await Promise.all(
+    images.map(async (imageFile) => {
+      // Convert image to buffer
+      const buffer = Buffer.from(await imageFile.arrayBuffer());
 
-    // Convert buffer to base64
-    const base64Image = buffer.toString("base64");
+      // Convert buffer to base64
+      const base64Image = buffer.toString("base64");
 
-    // Upload to Cloudinary
-    const result = await cloudinary.uploader.upload(
-      `data:${imageFile.type};base64,${base64Image}`,
-      {
-        folder: "PropertyPulse",
-      }
-    );
+      // Upload to Cloudinary
+      const result = await cloudinary.uploader.upload(
+        `data:${imageFile.type};base64,${base64Image}`,
+        {
+          folder: "PropertyPulse",
+        },
+      );
 
-    return result.secure_url;
-  })
-);
-
+      return result.secure_url;
+    }),
+  );
 
   propertyData.images = imageUrls;
   const newProperty = new Property(propertyData);

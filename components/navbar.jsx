@@ -184,6 +184,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
+                      onClick={()=>setisprofilemenuopen(false)}
                     >
                       Your Profile
                     </Link>
@@ -193,6 +194,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
+                      onClick={()=>setisprofilemenuopen(false)}
                     >
                       Saved Properties
                     </Link>
