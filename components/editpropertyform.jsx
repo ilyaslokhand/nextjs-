@@ -1,3 +1,5 @@
+import { updateProperty } from "@/app/actions/updateproperty";
+
 const AMENITIES = [
   "Wifi",
   "Full kitchen",
@@ -17,8 +19,10 @@ const AMENITIES = [
 ];
 
 const EditPropertyForm = ({ propertyDetails }) => {
+  const updatePropertyById = updateProperty.bind(null, propertyDetails._id);
+
   return (
-    <form>
+    <form action={updatePropertyById}>
       <h2 className="text-3xl text-center font-semibold mb-6">Edit Property</h2>
 
       <div className="mb-4">
@@ -263,7 +267,6 @@ const EditPropertyForm = ({ propertyDetails }) => {
           placeholder="Phone"
         />
       </div>
-
 
       <div>
         <button
