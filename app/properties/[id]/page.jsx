@@ -6,16 +6,23 @@ import { FaArrowLeft } from "react-icons/fa";
 import PropertyDetails from "@/components/propertydetails";
 import PropertyImages from "@/components/PropertyImages";
 import { ConvertToSerializedObject } from "@/utils/converttoobject";
+import BookMarkButton from "@/components/bookmarkbtn";
+import ShareButton from "@/components/sharebutton";
+import PropertyContactForm from "@/components/propertycontactform";
 
 const PropertyPage = async ({ params }) => {
   const { id } = await params;
 
-  await ConnectDB(); 
+  await ConnectDB();
   const PropertiesDocs = await Property.findById(id).lean();
-  const propertyDetails = ConvertToSerializedObject(PropertiesDocs)
+  const propertyDetails = ConvertToSerializedObject(PropertiesDocs);
 
-  if (!propertyDetails){
-    return <h1 className="text-center text-2xl mt-10 font-bold">Property details not found</h1>;
+  if (!propertyDetails) {
+    return (
+      <h1 className="text-center text-2xl mt-10 font-bold">
+        Property details not found
+      </h1>
+    );
   }
 
   return (
@@ -35,6 +42,11 @@ const PropertyPage = async ({ params }) => {
         <div className="container m-auto py-10 ">
           <div className="grid-base grid-70-30 gap-6">
             <PropertyDetails property={propertyDetails} />
+            <aside className="space-y-4">
+              <BookMarkButton />
+              <ShareButton />
+              <PropertyContactForm />
+            </aside>
           </div>
         </div>
       </section>
