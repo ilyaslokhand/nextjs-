@@ -5,11 +5,31 @@ import { FaBookmark } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { CheckBookmark } from "@/app/actions/checkbookmark";
 
 const BookMarkButton = ({ propertyId }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
+  console.log("session", session)
+  const userId = session?.user?.id
+  console.log("userId", userId)
+
+  useEffect(()=>{
+
+    if(!userId){
+      setLoading(false);
+      return;
+    };
+
+    CheckBookmark(propertyId).then((res)=>{
+      if(res.error) toast.error(res.error);
+      if(res.isBookmarked) setIsBookmarked(res.isBookmarked)
+      setLoading(false);
+    })
+
+
+  },[propertyId, CheckBookmark,userId ])
 
   const handleclick = async () => {
     if (!session) {
@@ -24,6 +44,10 @@ const BookMarkButton = ({ propertyId }) => {
       }
     }
   };
+
+  if(loading){
+    return <p className="text-center">Loading...</p>
+  }
 
   return (
     <>
