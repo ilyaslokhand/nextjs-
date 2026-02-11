@@ -11,9 +11,7 @@ const BookMarkButton = ({ propertyId }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
-  console.log("session", session)
   const userId = session?.user?.id
-  console.log("userId", userId)
 
   useEffect(()=>{
 

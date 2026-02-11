@@ -13,7 +13,7 @@ const ProfilePage = async () => {
   const { userId } = sessionUser;
 
   if (!userId) {
-    throw new Error(" User Id is required"); userProperties
+    throw new Error(" User Id is required"); 
   }
 
   const PropertiesDocs = await Property.find({ owner: userId }).lean();

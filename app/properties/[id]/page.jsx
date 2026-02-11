@@ -46,7 +46,7 @@ const PropertyPage = async ({ params }) => {
               <BookMarkButton
                 propertyId={propertyDetails._id.toString()}
               ></BookMarkButton>
-              <ShareButton />
+              <ShareButton property={propertyDetails} />
               <PropertyContactForm />
             </aside>
           </div>
