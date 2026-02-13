@@ -6,13 +6,14 @@ import profileDefault from "@/assets/images/profile.png";
 import { FaGoogle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useSession, getProviders, signIn,signOut } from "next-auth/react";
+import { useSession, getProviders, signIn, signOut } from "next-auth/react";
+import UnreadMessageCount from "./unreadmessagecount";
 
 const Navbar = () => {
   const { data: session } = useSession();
 
   const profileImage = session?.user?.image || profileDefault;
-  
+
   const [ismobilemenuopen, setismobilemenuopen] = useState(false);
   const [isprofilemenuopen, setisprofilemenuopen] = useState(false);
   const [providers, setproviders] = useState(null);
@@ -25,7 +26,6 @@ const Navbar = () => {
     };
     setUpProviders();
   }, []);
-
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -101,7 +101,7 @@ const Navbar = () => {
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
                 {providers &&
-                  Object.values(providers).map((provider,index) => (
+                  Object.values(providers).map((provider, index) => (
                     <button
                       key={index}
                       onClick={() => signIn(provider)}
@@ -140,10 +140,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                  2
-                  {/* <!-- Replace with the actual number of notifications --> */}
-                </span>
+                <UnreadMessageCount />
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
@@ -184,7 +181,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
-                      onClick={()=>setisprofilemenuopen(false)}
+                      onClick={() => setisprofilemenuopen(false)}
                     >
                       Your Profile
                     </Link>
@@ -194,15 +191,15 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      onClick={()=>setisprofilemenuopen(false)}
+                      onClick={() => setisprofilemenuopen(false)}
                     >
                       Saved Properties
                     </Link>
                     <button
-                    onClick={()=> {
-                      setisprofilemenuopen(false);
-                      signOut();
-                    }}
+                      onClick={() => {
+                        setisprofilemenuopen(false);
+                        signOut();
+                      }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
