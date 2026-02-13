@@ -4,7 +4,6 @@ const messageSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true,
       required: [true, "Please fill the name"],
     },
     email: {
@@ -12,7 +11,7 @@ const messageSchema = new mongoose.Schema(
       required: [true, "Please fill the email address"],
     },
     number: {
-      type: Number,
+      type: String,
       required: [true, "Please fill the phone number"],
     },
     body: {
