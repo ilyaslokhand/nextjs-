@@ -14,7 +14,7 @@ const MessageCard = ({ message }) => {
     await DeleteMessage(message._id);
     toast.success("Message deleted successfully");
     setisDeleted(true);
-    setunreadCount((prevCount)=> isRead? prevCount: prevCount-1 )
+    setunreadCount((prevCount) => (isRead ? prevCount : prevCount - 1));
   };
 
   if (isDeleted) {
@@ -24,7 +24,9 @@ const MessageCard = ({ message }) => {
   const handleReadClick = async () => {
     const readMessage = await MessageRead(message._id);
     setisRead(readMessage);
-    setunreadCount((prevCount)=> readMessage? prevCount-1: prevCount+1 )
+    setunreadCount((prevCount) =>
+      readMessage ? prevCount - 1 : prevCount + 1,
+    );
     toast.success(`Message marked as ${readMessage ? "read" : "unread"}`);
   };
 

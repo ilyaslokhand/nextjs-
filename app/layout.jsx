@@ -6,6 +6,7 @@ import SessionProviderComponent from "@/components/SessionProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalContextProvider } from "@/context/globalcontext";
+import "photoswipe/dist/photoswipe.css";
 
 export const metadata = {
   title: "Property managment app",
@@ -21,17 +22,17 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   return (
-    <SessionProviderComponent>
-      <GlobalContextProvider>
-        <html lang="en">
-          <body className={poppins.className}>
+    <html lang="en">
+      <body className={poppins.className}>
+        <SessionProviderComponent>
+          <GlobalContextProvider>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <ToastContainer />
-          </body>
-        </html>
-      </GlobalContextProvider>
-    </SessionProviderComponent>
+          </GlobalContextProvider>
+        </SessionProviderComponent>
+      </body>
+    </html>
   );
 }
