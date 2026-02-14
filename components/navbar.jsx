@@ -237,18 +237,26 @@ const Navbar = () => {
               <Link
                 href="/properties/add"
                 onClick={() => setismobilemenuopen(false)}
-                
                 className={`${pathname === "/properties/add" ? "bg-black" : ""} text-white block rounded-md px-3 py-2 text-base font-medium`}
               >
                 Add Property
               </Link>
             )}
-            {!session && (
-              <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
-                <i className="fa-brands fa-google mr-2"></i>
-                <span>Login or Register</span>
-              </button>
-            )}
+            {!session &&
+              providers &&
+              Object.values(providers).map((provider, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setismobilemenuopen(false);
+                    signIn(provider.id);
+                  }}
+                  className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4"
+                >
+                  <FaGoogle className="mr-2" />
+                  <span>Login or Register</span>
+                </button>
+              ))}
           </div>
         </div>
       )}
